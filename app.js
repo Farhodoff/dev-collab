@@ -163,6 +163,7 @@ function openSkillModal(skillId, level) {
     const body = document.getElementById('skill-modal-body');
     body.innerHTML = '';
 
+    // Show detailed paragraphs if available
     if (skill.details && skill.details.length) {
         skill.details.forEach(d => {
             const p = document.createElement('p');
@@ -185,6 +186,40 @@ function openSkillModal(skillId, level) {
             body.appendChild(ul);
         }
     }
+
+    // Exercises section (if present)
+    if (skill.exercises && skill.exercises.length) {
+        const h = document.createElement('h4');
+        h.className = 'font-bold mt-4';
+        h.textContent = currentLanguage === 'uz' ? 'Amaliy mashqlar' : currentLanguage === 'jp' ? '演習' : 'Exercises';
+        body.appendChild(h);
+
+        const ulEx = document.createElement('ol');
+        ulEx.className = 'list-decimal pl-5 mt-2 space-y-1';
+        skill.exercises.forEach(ex => {
+            const li = document.createElement('li');
+            li.textContent = ex;
+            ulEx.appendChild(li);
+        });
+        body.appendChild(ulEx);
+    }
+
+    // Copy button - copies key sections (name, description, details, tips, exercises)
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'mt-4 bg-gray-200 dark:bg-gray-700 px-3 py-2 rounded';
+    copyBtn.textContent = currentLanguage === 'uz' ? 'Nusxalash' : currentLanguage === 'jp' ? 'コピー' : 'Copy';
+    copyBtn.onclick = () => {
+        const parts = [skill.name, skill.description].concat(skill.details || [], skill.tips || [], skill.exercises || []);
+        const text = parts.join('\n\n');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = copyBtn.textContent;
+                copyBtn.textContent = currentLanguage === 'uz' ? 'Nusxalandi' : currentLanguage === 'jp' ? 'コピー済み' : 'Copied';
+                setTimeout(() => { copyBtn.textContent = orig; }, 2000);
+            });
+        }
+    };
+    body.appendChild(copyBtn);
 
     const modal = document.getElementById('skill-modal');
     modal.classList.remove('hidden');

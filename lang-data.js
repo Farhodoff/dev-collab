@@ -194,6 +194,69 @@ const skillsDataMultilang = {
         description: 'Task prioritization, time estimation',
         tips: ['Pomodoro technique', 'To-do lists', 'Distraction haddan to\'xtating'],
         icon: '⏰'
+      },
+      {
+        id: 11,
+        type: 'hard',
+        name: 'Task Management',
+        description: 'Issue tracking va task breakdown (Jira, Trello basics)',
+        tips: ['Yaxshi sarlavha yozing', 'Kichik subtasks yaratish', 'Assignee va due date ishlatish'],
+        exercises: ['Bir user story uchun 3 ta subtasks yarating va bitta subtasksni bajarib statusni yangilang', 'Issue descriptionga how-to-test qadamlarini qo\'shing'],
+        icon: '📋'
+      },
+      {
+        id: 12,
+        type: 'soft',
+        name: 'Communication & Help Culture',
+        description: 'Standup, yordam so\'rash va samarali feedback',
+        tips: ['Short standup updates', 'What I tried / expected / error format when asking help', 'Focus feedback on code, not person'],
+        exercises: ['Standup uchun 3-satrlik update yozing: yesterday, today, blockers', 'Help message uchun context qo\'shib savol yozing'],
+        icon: '💬'
+      },
+      {
+        id: 13,
+        type: 'hard',
+        name: 'Testing Basics',
+        description: 'Unit test tushunchasi va oddiy test yozish',
+        tips: ['Arrange-Act-Assert', 'Test isolation', 'Use mocks for external calls'],
+        exercises: ['Oddiy utility funksiyasi uchun 3 ta unit test yozing', 'Run tests and fix failing test'],
+        icon: '✅'
+      },
+      {
+        id: 14,
+        type: 'soft',
+        name: 'Code Review Basics',
+        description: 'PRga konstruktiv va samarali sharh yozish',
+        tips: ['Observation, impact, suggestion format', 'Check tests and lint', 'Ask clarifying questions'],
+        exercises: ['Misol PR oling va 3 konstruktiv sharh yozing', 'Follow review checklist: tests, behavior, edge cases'],
+        icon: '👀'
+      },
+      {
+        id: 15,
+        type: 'soft',
+        name: 'Debugging Basics',
+        description: 'Console, breakpoints va log tahlili',
+        tips: ['Reproduce bug reliably', 'Use breakpoints and step through', 'Read stack traces carefully'],
+        exercises: ['Find and fix a small bug using breakpoints', 'Use git bisect on a simple repo'],
+        icon: '🐞'
+      },
+      {
+        id: 16,
+        type: 'soft',
+        name: 'PR Writing',
+        description: 'Yaxshi PR tavsifi va test qadamlarini qo\'shish',
+        tips: ['Short purpose, how to test, related issues', 'Reference tasks or tickets'],
+        exercises: ['Write a PR description using the template: purpose, how to test, impact'],
+        icon: '📝'
+      },
+      {
+        id: 17,
+        type: 'soft',
+        name: 'Learning Resources',
+        description: 'Foydali kitoblar va kurslar',
+        tips: ['Start with guided tutorials', 'Practice with interactive exercises', 'Join community channels'],
+        exercises: ['Pick one resource and complete one tutorial lesson this week'],
+        icon: '📚'
       }
     ],
     middle: [
@@ -349,7 +412,14 @@ const skillsDataMultilang = {
       { id: 6, type: 'hard', name: 'SQL基礎', description: 'SELECT、INSERT、UPDATE、DELETE、JOIN', tips: ['インデックスの重要性', 'N+1問題', 'トランザクション'], icon: '💾' },
       { id: 7, type: 'hard', name: 'フロントエンド基礎', description: 'HTML、CSS、JavaScript、DOM操作', tips: ['セマンティックHTML', 'CSSフレックス/グリッド', 'イベント処理'], icon: '🎨' },
       { id: 8, type: 'hard', name: 'API統合', description: 'REST APIコール、fetch、axios', tips: ['HTTPメソッド', 'ステータスコード', 'エラーハンドリング'], icon: '🔌' },
-      { id: 9, type: 'soft', name: '時間管理', description: 'タスク優先順位付け、時間見積もり', tips: ['ポモドーロテクニック', 'TODOリスト', '気を散らさない'], icon: '⏰' }
+      { id: 9, type: 'soft', name: '時間管理', description: 'タスク優先順位付け、時間見積もり', tips: ['ポモドーロテクニック', 'TODOリスト', '気を散らさない'], icon: '⏰' },
+      { id: 11, type: 'hard', name: 'タスク管理', description: 'Issue とタスク分解 (Jira/Trello 入門)', tips: ['明確なタイトルを書く', '小さなサブタスクに分割', '担当者と期日を設定する'], exercises: ['1つのユーザーストーリーについて3つのサブタスクを作成し、1つを完了させてステータスを更新する', 'Issue に how-to-test の手順を追加する'], icon: '📋' },
+      { id: 12, type: 'soft', name: 'コミュニケーション & ヘルプ文化', description: 'スタンドアップ、助けを求める方法、建設的なフィードバック', tips: ['短いスタンドアップの更新', '助けを求めるときは What I tried / expected / error フォーマットを使う', 'コードに焦点を当てたフィードバック'], exercises: ['スタンドアップ用に3行の更新を書いてみる: yesterday, today, blockers', '助けを求めるメッセージにコンテキストを追加して質問する'], icon: '💬' },
+      { id: 13, type: 'hard', name: 'テスト基礎', description: 'ユニットテストの概念とシンプルなテストを書く', tips: ['Arrange-Act-Assert', 'テストの分離', '外部呼び出しはモックする'], exercises: ['シンプルなユーティリティ関数に対して3つのユニットテストを書く', 'テストを実行して失敗するテストを修正する'], icon: '✅' },
+      { id: 14, type: 'soft', name: 'コードレビュー基礎', description: 'PRに建設的かつ効果的なコメントを書く', tips: ['Observation, impact, suggestion フォーマット', 'テストとリンターを確認', '明確な質問をする'], exercises: ['例のPRを取得して3つの建設的なコメントを書く', 'レビューのチェックリストに従う: tests, behavior, edge cases'], icon: '👀' },
+      { id: 15, type: 'soft', name: 'デバッグ基礎', description: 'コンソール、ブレークポイント、ログ解析', tips: ['バグを確実に再現する', 'ブレークポイントを使ってステップ実行する', 'スタックトレースを注意深く読む'], exercises: ['ブレークポイントを使用して小さなバグを検出し修正する', 'シンプルなリポジトリで git bisect を使用する'], icon: '🐞' },
+      { id: 16, type: 'soft', name: 'PR 作成', description: '良い PR 説明とテスト手順の追加', tips: ['目的、how to test、関連する issue を簡潔に記述', 'タスクやチケットへの参照を追加する'], exercises: ['テンプレートに従って PR 説明を作成する: purpose, how to test, impact'], icon: '📝' },
+      { id: 17, type: 'soft', name: '学習リソース', description: '役立つ書籍やコース', tips: ['ガイド付きチュートリアルから始める', 'インタラクティブな演習で練習する', 'コミュニティチャネルに参加する'], exercises: ['1つのリソースを選んで今週中に1つのチュートリアルレッスンを完了する'], icon: '📚' }
     ],
     middle: [
       { id: 101, type: 'soft', name: 'コードレビュー専門知識', description: 'コード品質に責任を持つ、建設的なフィードバック', tips: ['セキュリティ脆弱性を見つける', 'パフォーマンス問題', 'アーキテクチャレビュー'], icon: '🔍' },
@@ -399,7 +469,14 @@ const skillsDataMultilang = {
       { id: 6, type: 'hard', name: 'SQL Basics', description: 'SELECT, INSERT, UPDATE, DELETE, JOIN', tips: ['Understand indexing', 'Avoid N+1 problems', 'Use transactions'], icon: '💾' },
       { id: 7, type: 'hard', name: 'Frontend Basics', description: 'HTML, CSS, JavaScript, DOM manipulation', tips: ['Use semantic HTML', 'Learn Flexbox/Grid', 'Handle events properly'], icon: '🎨' },
       { id: 8, type: 'hard', name: 'API Integration', description: 'REST API calls, fetch, axios', tips: ['Know HTTP methods', 'Understand status codes', 'Handle errors properly'], icon: '🔌' },
-      { id: 9, type: 'soft', name: 'Time Management', description: 'Task prioritization, time estimation', tips: ['Try Pomodoro technique', 'Use TO-DO lists', 'Minimize distractions'], icon: '⏰' }
+      { id: 9, type: 'soft', name: 'Time Management', description: 'Task prioritization, time estimation', tips: ['Try Pomodoro technique', 'Use TO-DO lists', 'Minimize distractions'], icon: '⏰' },
+      { id: 11, type: 'hard', name: 'Task Management', description: 'Issue tracking and task breakdown (Jira/Trello basics)', tips: ['Write clear titles', 'Break tasks into small subtasks', 'Assign owners and due dates'], exercises: ['Create 3 subtasks for a user story and complete one updating status', 'Add how-to-test steps to an issue description'], icon: '📋' },
+      { id: 12, type: 'soft', name: 'Communication & Help Culture', description: 'Standups, asking for help and giving constructive feedback', tips: ['Short standup updates', 'Use What I tried / expected / error when asking help', 'Keep feedback focused on code'], exercises: ['Write a 3-line standup update: yesterday, today, blockers', 'Compose a context-rich help request message'], icon: '💬' },
+      { id: 13, type: 'hard', name: 'Testing Basics', description: 'Unit test concepts and writing simple tests', tips: ['Arrange-Act-Assert', 'Test isolation', 'Mock external calls'], exercises: ['Write 3 unit tests for a simple utility function', 'Run tests and fix failing tests'], icon: '✅' },
+      { id: 14, type: 'soft', name: 'Code Review Basics', description: 'Writing constructive and effective PR comments', tips: ['Observation, impact, suggestion format', 'Check tests and lint', 'Ask clarifying questions'], exercises: ['Take an example PR and write 3 constructive comments', 'Follow a review checklist: tests, behavior, edge cases'], icon: '👀' },
+      { id: 15, type: 'soft', name: 'Debugging Basics', description: 'Console, breakpoints and log analysis', tips: ['Reproduce the bug reliably', 'Use breakpoints and step through', 'Read stack traces carefully'], exercises: ['Find and fix a small bug using breakpoints', 'Use git bisect on a simple repo'], icon: '🐞' },
+      { id: 16, type: 'soft', name: 'PR Writing', description: 'Good PR descriptions and adding test steps', tips: ['Short purpose, how to test, related issues', 'Reference tasks or tickets'], exercises: ['Write a PR description using template: purpose, how to test, impact'], icon: '📝' },
+      { id: 17, type: 'soft', name: 'Learning Resources', description: 'Useful books and courses', tips: ['Start with guided tutorials', 'Practice with interactive exercises', 'Join community channels'], exercises: ['Pick one resource and complete one tutorial lesson this week'], icon: '📚' }
     ],
     middle: [
       { id: 101, type: 'soft', name: 'Code Review Expertise', description: 'Responsible for code quality, giving constructive feedback', tips: ['Spot security vulnerabilities', 'Identify performance issues', 'Review architecture'], icon: '🔍' },
