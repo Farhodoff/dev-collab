@@ -2,16 +2,7 @@
 
 **Dasturchilar uchun Junior, Middle, va Senior darajadagi soft va hard skillarni o'rganish platformasi**
 
-## ✨ Xususiyatlar
 
-- ✅ **Dark/Light Mode** - Dasturchilarga qulaylik
-- ✅ **Filter Tugmalari** - Soft/Hard skills bo'yicha ajratish
-- ✅ **Qiyoslash** - Junior vs Middle vs Senior karshilashgan ko'rinish
-- ✅ **Responsive Design** - Mobile, tablet, desktop
-- ✅ **O'zbek Tili** - Native Uzbek interface
-- ✅ **Interaktiv Kartochkalar** - Hover effektlar va smooth transitions
-
-## 🎯 Maqsadi
 
 Bu sayt **jamoaviy ishlash madaniyatini** tushunarli tarzda ko'rsatadi:
 
@@ -34,36 +25,6 @@ Bu sayt **jamoaviy ishlash madaniyatini** tushunarli tarzda ko'rsatadi:
 - Cross-functional leadership
 - Technology decisions
 
-## 🛠️ Stack
-
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Styling**: Tailwind CSS (CDN)
-- **Mode**: Dark Mode Toggle
-- **No Build Tool**: Direct browser execution
-
-## 📂 Tuzilmasi
-
-```
-dev-collab/
-├── index.html          # Main page
-├── skills-data.js      # Skills database
-├── app.js             # Interactive logic
-└── README.md          # Documentation
-```
-
-## 🚀 Boshlash
-
-### Lokal ko'rish:
-```bash
-cd dev-collab
-python3 -m http.server 8000
-# Open http://localhost:8000
-```
-
-### Yoki oddiy:
-```bash
-open index.html
-```
 
 ## 📊 Skills Categories
 
@@ -112,7 +73,7 @@ open index.html
 
 ## 🔗 Links
 
-- GitHub: [devcollab](https://github.com)
+- GitHub: [devcollab](https://github.com/Farhodoff)
 - Domain: devcollab.xyz
 
 ## 📝 License
