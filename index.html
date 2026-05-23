@@ -22,6 +22,14 @@
                 <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">DevCollab</span>
             </div>
             <div class="flex items-center space-x-4">
+                <!-- Language Selector -->
+                <select id="langSelector" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition cursor-pointer font-semibold">
+                    <option value="uz">🇺🇿 Uzbek</option>
+                    <option value="jp">🇯🇵 日本語</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                
+                <!-- Dark Mode Toggle -->
                 <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
                     <span class="dark:hidden">🌙</span>
                     <span class="hidden dark:inline">☀️</span>
@@ -33,36 +41,36 @@
     <!-- Hero Section -->
     <section class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 py-16">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-bold mb-4">Jamoaviy Ishlash Ko'nikmalari</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <h1 id="heroTitle" class="text-4xl sm:text-5xl font-bold mb-4">Jamoaviy Ishlash Ko'nikmalari</h1>
+            <p id="heroSubtitle" class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
                 Junior, Middle, va Senior darajadagi dasturchilar uchun soft va hard skilllarni o'rganish va taqqoslash
             </p>
             
             <!-- Filters -->
             <div class="flex flex-wrap justify-center gap-3 mb-6">
-                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition" data-filter="all">
+                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition" data-filter="all" data-label="all">
                     Barchasi
                 </button>
-                <button class="filter-btn bg-gray-300 dark:bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition" data-filter="soft">
+                <button class="filter-btn bg-gray-300 dark:bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition" data-filter="soft" data-label="softSkills">
                     Soft Skills
                 </button>
-                <button class="filter-btn bg-gray-300 dark:bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition" data-filter="hard">
+                <button class="filter-btn bg-gray-300 dark:bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition" data-filter="hard" data-label="hardSkills">
                     Hard Skills
                 </button>
             </div>
 
             <!-- Level Tabs -->
             <div class="flex flex-wrap justify-center gap-3">
-                <button class="level-tab bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold" data-level="junior">
+                <button class="level-tab bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold" data-level="junior" data-label="junior">
                     Junior
                 </button>
-                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="middle">
+                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="middle" data-label="middle">
                     Middle
                 </button>
-                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="senior">
+                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="senior" data-label="senior">
                     Senior
                 </button>
-                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="comparison">
+                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="comparison" data-label="comparison">
                     Qiyoslash
                 </button>
             </div>
@@ -74,7 +82,7 @@
         
         <!-- Junior Level -->
         <section id="junior-section" class="level-content mb-16">
-            <h2 class="text-3xl font-bold mb-8 flex items-center">
+            <h2 class="text-3xl font-bold mb-8 flex items-center" id="juniorTitle">
                 <span class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center mr-4 font-bold">Jr</span>
                 Junior Dasturchi
             </h2>
@@ -84,7 +92,7 @@
 
         <!-- Middle Level -->
         <section id="middle-section" class="level-content hidden mb-16">
-            <h2 class="text-3xl font-bold mb-8 flex items-center">
+            <h2 class="text-3xl font-bold mb-8 flex items-center" id="middleTitle">
                 <span class="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center mr-4 font-bold">Md</span>
                 Middle Dasturchi
             </h2>
@@ -94,7 +102,7 @@
 
         <!-- Senior Level -->
         <section id="senior-section" class="level-content hidden mb-16">
-            <h2 class="text-3xl font-bold mb-8 flex items-center">
+            <h2 class="text-3xl font-bold mb-8 flex items-center" id="seniorTitle">
                 <span class="w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center mr-4 font-bold">Sr</span>
                 Senior Dasturchi
             </h2>
@@ -104,7 +112,7 @@
 
         <!-- Comparison -->
         <section id="comparison-section" class="level-content hidden mb-16">
-            <h2 class="text-3xl font-bold mb-8">Junior vs Middle Qiyoslash</h2>
+            <h2 class="text-3xl font-bold mb-8" id="comparisonTitle">Junior vs Middle Qiyoslash</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div id="comparison-junior" class="space-y-4"></div>
@@ -117,11 +125,11 @@
     <!-- Resources Section -->
     <section class="bg-gray-100 dark:bg-gray-800 py-16">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-10 text-center">📚 O'rganish Resurslar</h2>
+            <h2 class="text-3xl font-bold mb-10 text-center" id="resourcesTitle">📚 O'rganish Resurslar</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                    <h3 class="text-xl font-bold mb-3">📖 Kitoblar</h3>
+                    <h3 class="text-xl font-bold mb-3" id="resourcesBooks">📖 Kitoblar</h3>
                     <ul class="space-y-2 text-sm">
                         <li>• The Clean Coder</li>
                         <li>• The Pragmatic Programmer</li>
@@ -131,7 +139,7 @@
                 </div>
                 
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                    <h3 class="text-xl font-bold mb-3">🎓 Kurslar</h3>
+                    <h3 class="text-xl font-bold mb-3" id="resourcesCourses">🎓 Kurslar</h3>
                     <ul class="space-y-2 text-sm">
                         <li>• LinkedIn Learning</li>
                         <li>• Udemy</li>
@@ -141,7 +149,7 @@
                 </div>
                 
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                    <h3 class="text-xl font-bold mb-3">⚙️ Shablonlar</h3>
+                    <h3 class="text-xl font-bold mb-3" id="resourcesTemplates">⚙️ Shablonlar</h3>
                     <ul class="space-y-2 text-sm">
                         <li>• <a href="#" class="text-blue-600 hover:underline">PR Template</a></li>
                         <li>• <a href="#" class="text-blue-600 hover:underline">DoD Checklist</a></li>
@@ -156,15 +164,16 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>DevCollab © 2026 | Dasturchilar uchun Jamoaviy Ishlash Platform</p>
+            <p id="footerText">DevCollab © 2026 | Dasturchilar uchun Jamoaviy Ishlash Platform</p>
             <p class="mt-2 text-sm text-gray-400">
                 <a href="https://github.com" class="hover:text-white transition">GitHub</a> •
-                <a href="#" class="hover:text-white transition">Fikr Bildiring</a>
+                <a href="#" id="feedbackLink" class="hover:text-white transition">Fikr Bildiring</a>
             </p>
         </div>
     </footer>
 
     <script src="skills-data.js"></script>
+    <script src="lang-data.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

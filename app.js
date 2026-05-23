@@ -1,4 +1,70 @@
-// Dark Mode Toggle
+// ============================================
+// LANGUAGE MANAGEMENT
+// ============================================
+let currentLanguage = localStorage.getItem('language') || 'uz';
+
+const langSelector = document.getElementById('langSelector');
+langSelector.value = currentLanguage;
+
+function translate(key) {
+    return translations[currentLanguage]?.[key] || translations['uz'][key] || key;
+}
+
+function updateUIText() {
+    // Hero
+    document.getElementById('heroTitle').textContent = translate('title');
+    document.getElementById('heroSubtitle').textContent = translate('subtitle');
+    
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.label) {
+            btn.textContent = translate(btn.dataset.label);
+        }
+    });
+    
+    // Level tabs
+    document.querySelectorAll('.level-tab').forEach(btn => {
+        if (btn.dataset.label) {
+            btn.textContent = translate(btn.dataset.label);
+        }
+    });
+    
+    // Section titles
+    document.getElementById('juniorTitle').innerHTML = `
+        <span class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center mr-4 font-bold">Jr</span>
+        ${translate('juniorDeveloper')}
+    `;
+    document.getElementById('middleTitle').innerHTML = `
+        <span class="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center mr-4 font-bold">Md</span>
+        ${translate('middleDeveloper')}
+    `;
+    document.getElementById('seniorTitle').innerHTML = `
+        <span class="w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center mr-4 font-bold">Sr</span>
+        ${translate('seniorDeveloper')}
+    `;
+    document.getElementById('comparisonTitle').textContent = translate('juniorVsMiddle');
+    
+    // Resources
+    document.getElementById('resourcesTitle').textContent = '📚 ' + translate('resources');
+    document.getElementById('resourcesBooks').textContent = '📖 ' + translate('books');
+    document.getElementById('resourcesCourses').textContent = '🎓 ' + translate('courses');
+    document.getElementById('resourcesTemplates').textContent = '⚙️ ' + translate('templates');
+    
+    // Footer
+    document.getElementById('footerText').textContent = translate('footerText');
+    document.getElementById('feedbackLink').textContent = translate('feedback');
+}
+
+langSelector.addEventListener('change', (e) => {
+    currentLanguage = e.target.value;
+    localStorage.setItem('language', currentLanguage);
+    updateUIText();
+    updateContent();
+});
+
+// ============================================
+// DARK MODE TOGGLE
+// ============================================
 const darkModeToggle = document.getElementById('darkModeToggle');
 const html = document.documentElement;
 
@@ -30,7 +96,7 @@ function renderSkillCard(skill) {
             <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">${skill.description}</p>
             
             <div class="space-y-1">
-                <p class="text-xs font-semibold text-gray-700 dark:text-gray-300">💡 Maslahat:</p>
+                <p class="text-xs font-semibold text-gray-700 dark:text-gray-300">💡 ${currentLanguage === 'uz' ? 'Maslahat' : currentLanguage === 'jp' ? 'ヒント' : 'Tips'}:</p>
                 <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
                     ${skill.tips.map(tip => `<li>• ${tip}</li>`).join('')}
                 </ul>
@@ -41,7 +107,7 @@ function renderSkillCard(skill) {
 
 // Filter skills based on type and level
 function getFilteredSkills(level) {
-    const levelData = skillsData[level];
+    const levelData = skillsDataMultilang[currentLanguage]?.[level] || skillsDataMultilang['uz'][level];
     
     if (currentFilter === 'all') {
         return levelData;
