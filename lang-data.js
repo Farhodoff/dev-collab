@@ -143,8 +143,18 @@ const skillsDataMultilang = {
         name: 'Git Asoslari',
         description: 'Branch, commit, push, pull, PR',
         tips: ['Branch qayta nomlashtirish', 'Yaxshi commit messages', '.gitignore'],
-        icon: '🌳'
+        icon: '🌳',
+        details: [
+          "Overview: Junior dasturchiga Git va branch-workflow asoslarini o'rganish: branching, PR yozish, merge/rebase, conflict resolution.",
+          "Learning objectives: Branch yaratish va boshqarish; commit yozish va push qilish; PR ochish va description yozish; conflictlarni hal qilish.",
+          "Key commands: git clone <repo>, git status, git add <file>, git commit -m \"Short, descriptive message\", git push origin <branch>, git pull --rebase, git checkout -b <feature>, git merge <branch>, git rebase <branch>, git log --oneline, git diff, git stash.",
+          "Best practices: Kichik, mantiqli commitlar; foydali commit xabarlari; har doim feature branchda ishlash; PRga test qadamlarini qo'shish; kerak bo'lsa branchni rebase qilish.",
+          "Simple workflow: 1) git checkout -b feature/your-idea; 2) kod yozish, git add, git commit; 3) git push origin feature/your-idea; 4) Open PR (maqsad, test qadamlari, nima review qilinishi kerak); 5) address comments; 6) merge when approved.",
+          "Exercises: Clone repo, create feature branch, make 3 commits, push and open PR; Simulate conflict and resolve it; Use git stash to save work and apply later.",
+          "Resources: Pro Git (https://git-scm.com/book/en/v2), Learn Git Branching (https://learngitbranching.js.org/), Atlassian Git tutorials (https://www.atlassian.com/git/tutorials)"
+        ]
       },
+
       {
         id: 5,
         type: 'hard',
@@ -317,7 +327,24 @@ const skillsDataMultilang = {
       { id: 1, type: 'soft', name: 'コミュニケーション', description: '質問、回答、会話参加', tips: ['スタンドアップで積極的に話す', '遠慮なく質問する', '意見を述べる'], icon: '💬' },
       { id: 2, type: 'soft', name: 'コードレビューへの抵抗感', description: '他人のコードを読んで学ぶ', tips: ['批判はコードについて', '良い質問をする', '他人から学ぶ'], icon: '👀' },
       { id: 3, type: 'soft', name: '責任感', description: '自分の仕事に責任を持つ', tips: ['期限を伝える', '進捗報告', '問題があれば即報告'], icon: '📋' },
-      { id: 4, type: 'hard', name: 'Git基礎', description: 'ブランチ、コミット、プッシュ、プル、PR', tips: ['ブランチリネーム', '良いコミットメッセージ', '.gitignore'], icon: '🌳' },
+      {
+        id: 4,
+        type: 'hard',
+        name: 'Git基礎',
+        description: 'ブランチ、コミット、プッシュ、プル、PR',
+        tips: ['ブランチリネーム', '良いコミットメッセージ', '.gitignore'],
+        icon: '🌳',
+        details: [
+          "概要: ジュニア開発者向けに Git とブランチワークフローの基本を教える: ブランチ、PR、マージ/リベース、簡単なコンフリクト解決。",
+          "学習目標: ブランチ作成と管理、コミット作成と push、PR の作成と説明、簡単なコンフリクトの解決。",
+          "主要コマンド: git clone <repo>, git status, git add <file>, git commit -m \"Short, descriptive message\", git push origin <branch>, git pull --rebase, git checkout -b <feature>, git merge <branch>, git rebase <branch>, git log --oneline, git diff, git stash.",
+          "ベストプラクティス: 小さく焦点を絞ったコミット、意味のあるコミットメッセージ、必ず feature branch で作業、PR にテスト手順を含める。",
+          "簡単なワークフロー: 1) git checkout -b feature/your-idea; 2) コードを書く、git add、git commit; 3) git push origin feature/your-idea; 4) PR を開く: 目的、テスト方法、レビュー箇所; 5) コメントに対応; 6) 承認後マージ。",
+          "演習: リポジトリをクローンし、feature ブランチを作成、3 つのコミットを行い、push して PR を作成; コンフリクトをシミュレートして解決; git stash を使って作業を一時保存して再適用する。",
+          "リソース: Pro Git (https://git-scm.com/book/en/v2), Learn Git Branching (https://learngitbranching.js.org/), Atlassian Git tutorials (https://www.atlassian.com/git/tutorials)"
+        ]
+      },
+
       { id: 5, type: 'hard', name: 'ユニットテスト作成', description: 'Jest、pytest - シンプルなテスト', tips: ['各関数にテスト', 'エッジケース', 'AAAパターン'], icon: '✅' },
       { id: 6, type: 'hard', name: 'SQL基礎', description: 'SELECT、INSERT、UPDATE、DELETE、JOIN', tips: ['インデックスの重要性', 'N+1問題', 'トランザクション'], icon: '💾' },
       { id: 7, type: 'hard', name: 'フロントエンド基礎', description: 'HTML、CSS、JavaScript、DOM操作', tips: ['セマンティックHTML', 'CSSフレックス/グリッド', 'イベント処理'], icon: '🎨' },
@@ -350,7 +377,24 @@ const skillsDataMultilang = {
       { id: 1, type: 'soft', name: 'Communication', description: 'Asking questions, giving answers, participating in conversations', tips: ['Speak actively in standups', 'Ask questions without hesitation', 'Express your opinions'], icon: '💬' },
       { id: 2, type: 'soft', name: 'Embracing Code Review', description: 'Reading and learning from other code', tips: ['Criticism is about code, not you', 'Ask good questions', 'Learn from others'], icon: '👀' },
       { id: 3, type: 'soft', name: 'Responsibility', description: 'Taking ownership of your work, delivering on time', tips: ['Communicate deadlines', 'Provide progress updates', 'Report issues immediately'], icon: '📋' },
-      { id: 4, type: 'hard', name: 'Git Basics', description: 'Branches, commits, push, pull, PR', tips: ['Rename branches properly', 'Write good commit messages', 'Use .gitignore correctly'], icon: '🌳' },
+      {
+        id: 4,
+        type: 'hard',
+        name: 'Git Basics',
+        description: 'Branches, commits, push, pull, PR',
+        tips: ['Rename branches properly', 'Write good commit messages', 'Use .gitignore correctly'],
+        icon: '🌳',
+        details: [
+          "Overview: Teach Junior developers core Git and branch-workflow: branching, PRs, merge/rebase, and basic conflict resolution.",
+          "Learning objectives: Create/manage branches; write clear commits; open PRs with helpful descriptions and test steps; resolve simple conflicts.",
+          "Key commands: git clone <repo>, git status, git add <file>, git commit -m \"Short, descriptive message\", git push origin <branch>, git pull --rebase, git checkout -b <feature>, git merge <branch>, git rebase <branch>, git log --oneline, git diff, git stash.",
+          "Best practices: Small, focused commits; meaningful commit messages; always work on feature branches; include test steps in PRs; rebase when team policy requires it.",
+          "Simple workflow: 1) git checkout -b feature/your-idea; 2) code, git add, git commit; 3) git push origin feature/your-idea; 4) Open PR: purpose, how to test, what to review; 5) Address comments; 6) Merge when approved.",
+          "Exercises: Clone a repo, create a feature branch, make 3 commits, push and open a PR; Simulate and resolve a merge conflict; Use git stash to save work and reapply later.",
+          "Resources: Pro Git (https://git-scm.com/book/en/v2), Learn Git Branching (https://learngitbranching.js.org/), Atlassian Git tutorials (https://www.atlassian.com/git/tutorials)"
+        ]
+      },
+
       { id: 5, type: 'hard', name: 'Writing Unit Tests', description: 'Jest, pytest - simple tests', tips: ['Test each function', 'Cover edge cases', 'Use AAA pattern'], icon: '✅' },
       { id: 6, type: 'hard', name: 'SQL Basics', description: 'SELECT, INSERT, UPDATE, DELETE, JOIN', tips: ['Understand indexing', 'Avoid N+1 problems', 'Use transactions'], icon: '💾' },
       { id: 7, type: 'hard', name: 'Frontend Basics', description: 'HTML, CSS, JavaScript, DOM manipulation', tips: ['Use semantic HTML', 'Learn Flexbox/Grid', 'Handle events properly'], icon: '🎨' },

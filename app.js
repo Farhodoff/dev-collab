@@ -101,6 +101,10 @@ function renderSkillCard(skill) {
                     ${skill.tips.map(tip => `<li>• ${tip}</li>`).join('')}
                 </ul>
             </div>
+
+            <div class="mt-4">
+                <button class="open-skill-btn mt-3 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm" data-skill-id="${skill.id}" data-level="${currentLevel}">📖 ${currentLanguage === 'uz' ? 'Batafsil' : currentLanguage === 'jp' ? '詳細' : 'More'}</button>
+            </div>
         </div>
     `;
 }
@@ -122,6 +126,61 @@ function renderGrid(level) {
     const skills = getFilteredSkills(level);
     
     grid.innerHTML = skills.map(skill => renderSkillCard(skill)).join('');
+    
+    // attach open buttons
+    grid.querySelectorAll('.open-skill-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const skillId = parseInt(btn.dataset.skillId, 10);
+            const level = btn.dataset.level || currentLevel;
+            openSkillModal(skillId, level);
+        });
+    });
+}
+
+function openSkillModal(skillId, level) {
+    const levelData = skillsDataMultilang[currentLanguage]?.[level] || skillsDataMultilang['uz'][level] || [];
+    const skill = levelData.find(s => s.id === skillId);
+    if (!skill) return;
+    document.getElementById('skill-modal-title').textContent = skill.name;
+    const body = document.getElementById('skill-modal-body');
+    body.innerHTML = '';
+
+    if (skill.details && skill.details.length) {
+        skill.details.forEach(d => {
+            const p = document.createElement('p');
+            p.textContent = d;
+            p.className = 'mb-2';
+            body.appendChild(p);
+        });
+    } else {
+        const p = document.createElement('p');
+        p.textContent = skill.description;
+        body.appendChild(p);
+        if (skill.tips && skill.tips.length) {
+            const ul = document.createElement('ul');
+            ul.className = 'list-disc pl-5 mt-3';
+            skill.tips.forEach(t => {
+                const li = document.createElement('li');
+                li.textContent = t;
+                ul.appendChild(li);
+            });
+            body.appendChild(ul);
+        }
+    }
+
+    const modal = document.getElementById('skill-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // close handlers
+    document.getElementById('skill-modal-close').onclick = closeSkillModal;
+    modal.onclick = (e) => { if (e.target.id === 'skill-modal') closeSkillModal(); };
+}
+
+function closeSkillModal() {
+    const modal = document.getElementById('skill-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 }
 
 // Render comparison section
@@ -197,6 +256,9 @@ function updateContent() {
     if (currentLevel === 'comparison') {
         document.getElementById('comparison-section').classList.remove('hidden');
         renderComparison();
+    } else if (currentLevel === 'quiz') {
+        document.getElementById('quiz-section').classList.remove('hidden');
+        initQuiz();
     } else {
         document.getElementById(`${currentLevel}-section`).classList.remove('hidden');
         renderGrid(currentLevel);
@@ -232,3 +294,110 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ============================================
+// QUIZ FUNCTIONALITY
+// ============================================
+let userQuizAnswers = {};
+
+function initQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = '';
+    userQuizAnswers = {};
+    
+    const quizData = typeof quizQuestions !== 'undefined' ? quizQuestions : [];
+    
+    if (!quizData || quizData.length === 0) {
+        quizContainer.innerHTML = '<p class="text-gray-600">Quiz ma\'lumotlari topilmadi</p>';
+        return;
+    }
+    
+    quizData.forEach((question, idx) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700';
+        
+        const questionText = question[currentLanguage] || question['uz'];
+        const options = question.options || [];
+        
+        questionDiv.innerHTML = `
+            <h4 class="font-bold text-lg mb-4">Savol ${idx + 1}/${quizData.length}: ${questionText}</h4>
+            <div class="space-y-2">
+                ${options.map((option, optIdx) => `
+                    <label class="flex items-center p-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer transition">
+                        <input type="radio" name="q${idx}" value="${optIdx}" class="quiz-answer mr-3" data-question="${idx}">
+                        <span>${option[currentLanguage] || option['uz']}</span>
+                    </label>
+                `).join('')}
+            </div>
+        `;
+        
+        quizContainer.appendChild(questionDiv);
+    });
+    
+    // Add submit button
+    const submitBtn = document.createElement('button');
+    submitBtn.className = 'mt-8 bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition w-full';
+    submitBtn.textContent = 'Natijani Ko\'rish';
+    submitBtn.addEventListener('click', calculateQuizResult);
+    quizContainer.appendChild(submitBtn);
+    
+    document.getElementById('quiz-result').classList.add('hidden');
+}
+
+function calculateQuizResult() {
+    const answers = document.querySelectorAll('.quiz-answer:checked');
+    const quizData = typeof quizQuestions !== 'undefined' ? quizQuestions : [];
+    
+    if (answers.length !== quizData.length) {
+        alert('Barcha savollarga javob bering!');
+        return;
+    }
+    
+    let juniorScore = 0;
+    let middleScore = 0;
+    
+    answers.forEach(answer => {
+        const qIdx = parseInt(answer.dataset.question);
+        const optIdx = parseInt(answer.value);
+        const question = quizData[qIdx];
+        
+        if (question.options && question.options[optIdx]) {
+            const option = question.options[optIdx];
+            juniorScore += option.junior || 0;
+            middleScore += option.middle || 0;
+        }
+    });
+    
+    let resultLevel = 'Junior';
+    let resultText = '';
+    
+    if (middleScore > juniorScore + 5) {
+        resultLevel = 'Middle';
+        resultText = 'Siz Middle darajaga yaqin! Kod review qilish, mentorlik qilish va arxitektura bo\'yicha qaror qabul qilish ko\'nikmalari borligingiz payqalindi.';
+    } else if (juniorScore > middleScore + 5) {
+        resultLevel = 'Junior';
+        resultText = 'Siz Junior darajada. Asosiy vositalar va jamoaviy ishlash madaniyatini o\'zlashtirish uchun ushbu skilllarni o\'rganish tavsiya etiladi.';
+    } else {
+        resultLevel = 'Junior-to-Middle';
+        resultText = 'Siz Junior va Middle o\'rtasida. Junior skilllarni yanada kuchaytiring va Middle tanidiqlaridan o\'rganishni boshlang!';
+    }
+    
+    document.getElementById('quiz-result-text').innerHTML = `
+        <p class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-2">📌 Siz: <strong>${resultLevel}</strong> darajada</p>
+        <p>${resultText}</p>
+    `;
+    
+    document.getElementById('quiz-result').classList.remove('hidden');
+    document.getElementById('quiz-container').classList.add('opacity-50', 'pointer-events-none');
+    
+    document.getElementById('quiz-restart').addEventListener('click', () => {
+        document.getElementById('quiz-container').classList.remove('opacity-50', 'pointer-events-none');
+        initQuiz();
+    });
+}
+
+// Initialize quiz when quiz section is viewed
+document.addEventListener('DOMContentLoaded', () => {
+    // Quiz init will happen when user clicks quiz tab
+});
+
