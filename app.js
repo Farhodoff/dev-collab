@@ -72,6 +72,10 @@ langSelector.addEventListener('change', (e) => {
 const darkModeToggle = document.getElementById('darkModeToggle');
 const html = document.documentElement;
 
+// Accessibility helpers
+let lastFocusedElement = null;
+let modalKeydownHandler = null;
+
 // Check localStorage
 if (localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     html.classList.add('dark');
@@ -220,6 +224,10 @@ function openSkillModal(skillId, level) {
     const levelData = skillsDataMultilang[currentLanguage]?.[level] || skillsDataMultilang['uz'][level] || [];
     const skill = levelData.find(s => s.id === skillId);
     if (!skill) return;
+
+    // store last focused element for return focus
+    lastFocusedElement = document.activeElement;
+
     document.getElementById('skill-modal-title').textContent = skill.name;
     const body = document.getElementById('skill-modal-body');
     body.innerHTML = '';
@@ -252,7 +260,7 @@ function openSkillModal(skillId, level) {
     if (skill.exercises && skill.exercises.length) {
         const h = document.createElement('h4');
         h.className = 'font-bold mt-4';
-        h.textContent = currentLanguage === 'uz' ? 'Amaliy mashqlar' : currentLanguage === 'jp' ? '演習' : 'Exercises';
+        h.textContent = translate('exercisesLabel');
         body.appendChild(h);
 
         const ulEx = document.createElement('ol');
@@ -288,7 +296,7 @@ function openSkillModal(skillId, level) {
                             if (navigator.clipboard && navigator.clipboard.writeText) {
                                 navigator.clipboard.writeText(cmd).then(() => {
                                     const prev = b.textContent;
-                                    b.textContent = currentLanguage === 'uz' ? 'Nusxalandi' : currentLanguage === 'jp' ? 'コピー済み' : 'Copied';
+                                    b.textContent = translate('copiedText');
                                     setTimeout(() => { b.textContent = prev; }, 1500);
                                 });
                             }
@@ -304,14 +312,14 @@ function openSkillModal(skillId, level) {
     // Copy button - copies key sections (name, description, details, tips, exercises)
     const copyBtn = document.createElement('button');
     copyBtn.className = 'mt-4 bg-gray-200 dark:bg-gray-700 px-3 py-2 rounded';
-    copyBtn.textContent = currentLanguage === 'uz' ? 'Nusxalash' : currentLanguage === 'jp' ? 'コピー' : 'Copy';
+    copyBtn.textContent = translate('copyText');
     copyBtn.onclick = () => {
         const parts = [skill.name, skill.description].concat(skill.details || [], skill.tips || [], skill.exercises || []);
         const text = parts.join('\n\n');
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(() => {
                 const orig = copyBtn.textContent;
-                copyBtn.textContent = currentLanguage === 'uz' ? 'Nusxalandi' : currentLanguage === 'jp' ? 'コピー済み' : 'Copied';
+                copyBtn.textContent = translate('copiedText');
                 setTimeout(() => { copyBtn.textContent = orig; }, 2000);
             });
         }
@@ -319,8 +327,45 @@ function openSkillModal(skillId, level) {
     body.appendChild(copyBtn);
 
     const modal = document.getElementById('skill-modal');
+    modal.setAttribute('aria-hidden', 'false');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
+
+    // focus management: focus close button
+    const closeBtn = document.getElementById('skill-modal-close');
+    if (closeBtn) closeBtn.focus();
+
+    // focus trap
+    const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusableEls = Array.from(modal.querySelectorAll(focusableSelectors)).filter(el => !el.hasAttribute('disabled'));
+    const firstFocusable = focusableEls[0];
+    const lastFocusable = focusableEls[focusableEls.length - 1];
+
+    modalKeydownHandler = function(e) {
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            closeSkillModal();
+            return;
+        }
+        if (e.key === 'Tab') {
+            if (focusableEls.length === 0) {
+                e.preventDefault();
+                return;
+            }
+            if (e.shiftKey) {
+                if (document.activeElement === firstFocusable) {
+                    e.preventDefault();
+                    lastFocusable.focus();
+                }
+            } else {
+                if (document.activeElement === lastFocusable) {
+                    e.preventDefault();
+                    firstFocusable.focus();
+                }
+            }
+        }
+    };
+    document.addEventListener('keydown', modalKeydownHandler);
 
     // close handlers
     document.getElementById('skill-modal-close').onclick = closeSkillModal;
@@ -329,8 +374,19 @@ function openSkillModal(skillId, level) {
 
 function closeSkillModal() {
     const modal = document.getElementById('skill-modal');
+    modal.setAttribute('aria-hidden', 'true');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
+
+    // remove keydown listener if any
+    if (modalKeydownHandler) {
+        document.removeEventListener('keydown', modalKeydownHandler);
+        modalKeydownHandler = null;
+    }
+
+    // restore focus
+    try { if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus(); } catch (e) {}
+    lastFocusedElement = null;
 }
 
 // Render comparison section
