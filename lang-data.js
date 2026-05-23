@@ -257,6 +257,63 @@ const skillsDataMultilang = {
         tips: ['Start with guided tutorials', 'Practice with interactive exercises', 'Join community channels'],
         exercises: ['Pick one resource and complete one tutorial lesson this week'],
         icon: '📚'
+      },
+      {
+        id: 18,
+        type: 'hard',
+        name: 'Task Management Detailed',
+        description: 'Issue tracking, subtasks, how-to-test',
+        tips: ['Create clear titles', 'Break into small subtasks', 'Assign owners and due dates'],
+        exercises: ['Bir user story uchun 3 ta subtasks yarating va birini bajarib, statusni yangilang.'],
+        resources: ['Atlassian Jira guide: https://www.atlassian.com/software/jira/guides'],
+        icon: '🗂️'
+      },
+      {
+        id: 19,
+        type: 'soft',
+        name: 'Communication & Help Culture Detailed',
+        description: 'Standup, help requests, constructive feedback',
+        tips: ['Short standup updates', "What I tried / expected / error format", 'Focus feedback on code'],
+        exercises: ['Standup uchun 3-satrlik update yozing: yesterday, today, blockers.'],
+        resources: ['"Crucial Conversations" (kitob)'],
+        icon: '💬'
+      },
+      {
+        id: 20,
+        type: 'hard',
+        name: 'Testing Basics Detailed',
+        description: 'Unit test concepts, ARR-Act-Assert, mocks',
+        tips: ['Arrange-Act-Assert', 'Test isolation', 'Mock external calls'],
+        exercises: ['Oddiy utility funksiyasi uchun 3 ta unit test yozing.'],
+        resources: ['Jest docs: https://jestjs.io/'],
+        icon: '✅'
+      },
+      {
+        id: 21,
+        type: 'soft',
+        name: 'Time Management Detailed',
+        description: 'Pomodoro, estimation, planning',
+        tips: ['Pomodoro technique', 'Task estimation small/medium/large', 'Weekly planning'],
+        exercises: ['2 soatlik ish uchun Pomodoro sessiyalari bilan ish rejasini tuzing.'],
+        icon: '⏰'
+      },
+      {
+        id: 22,
+        type: 'hard',
+        name: 'Debugging Detailed',
+        description: 'Console logs, DevTools, breakpoints',
+        tips: ['Reproduce bug reliably', 'Use breakpoints and step through', 'Read stack traces carefully'],
+        exercises: ['Bir cheklangan bugni topib, breakpoint yordamida tahlil qiling va hal qiling.'],
+        icon: '🐞'
+      },
+      {
+        id: 23,
+        type: 'soft',
+        name: 'PR Writing Detailed',
+        description: 'Good PR descriptions and test steps',
+        tips: ['Short purpose, how to test, related issues'],
+        exercises: ["Yangi PR template bo'yicha bir PR description yozing."],
+        icon: '📝'
       }
     ],
     middle: [
