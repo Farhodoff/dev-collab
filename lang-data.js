@@ -476,7 +476,13 @@ const skillsDataMultilang = {
       { id: 14, type: 'soft', name: 'コードレビュー基礎', description: 'PRに建設的かつ効果的なコメントを書く', tips: ['Observation, impact, suggestion フォーマット', 'テストとリンターを確認', '明確な質問をする'], exercises: ['例のPRを取得して3つの建設的なコメントを書く', 'レビューのチェックリストに従う: tests, behavior, edge cases'], icon: '👀' },
       { id: 15, type: 'soft', name: 'デバッグ基礎', description: 'コンソール、ブレークポイント、ログ解析', tips: ['バグを確実に再現する', 'ブレークポイントを使ってステップ実行する', 'スタックトレースを注意深く読む'], exercises: ['ブレークポイントを使用して小さなバグを検出し修正する', 'シンプルなリポジトリで git bisect を使用する'], icon: '🐞' },
       { id: 16, type: 'soft', name: 'PR 作成', description: '良い PR 説明とテスト手順の追加', tips: ['目的、how to test、関連する issue を簡潔に記述', 'タスクやチケットへの参照を追加する'], exercises: ['テンプレートに従って PR 説明を作成する: purpose, how to test, impact'], icon: '📝' },
-      { id: 17, type: 'soft', name: '学習リソース', description: '役立つ書籍やコース', tips: ['ガイド付きチュートリアルから始める', 'インタラクティブな演習で練習する', 'コミュニティチャネルに参加する'], exercises: ['1つのリソースを選んで今週中に1つのチュートリアルレッスンを完了する'], icon: '📚' }
+      { id: 17, type: 'soft', name: '学習リソース', description: '役立つ書籍やコース', tips: ['ガイド付きチュートリアルから始める', 'インタラクティブな演習で練習する', 'コミュニティチャネルに参加する'], exercises: ['1つのリソースを選んで今週中に1つのチュートリアルレッスンを完了する'], icon: '📚' },
+      { id: 18, type: 'hard', name: 'タスク管理（詳細）', description: 'Issue トラッキング、サブタスク、テスト手順の書き方', tips: ['明確なタイトルを作成する', '小さなサブタスクに分割する', '担当者と期日を設定する'], exercises: ['1つのユーザーストーリーについて3つのサブタスクを作成し、1つを完了してステータスを更新する'], resources: ['Atlassian Jira guide: https://www.atlassian.com/software/jira/guides'], icon: '🗂️' },
+      { id: 19, type: 'soft', name: 'コミュニケーション & ヘルプ文化（詳細）', description: 'スタンドアップ、ヘルプリクエスト、建設的なフィードバック', tips: ['短いスタンドアップ更新', '助けを求めるときは What I tried / expected / error フォーマットを使う', 'フィードバックはコードに焦点を当てる'], exercises: ['スタンドアップ用に3行の更新を書いてみる: yesterday, today, blockers'], resources: ['"Crucial Conversations" (書籍)'], icon: '💬' },
+      { id: 20, type: 'hard', name: 'テスト基礎（詳細）', description: 'ユニットテストの概念、Arrange-Act-Assert、モック', tips: ['Arrange-Act-Assert', 'テストの分離', '外部呼び出しはモックする'], exercises: ['シンプルなユーティリティ関数に対して3つのユニットテストを書く。'], resources: ['Jest docs: https://jestjs.io/'], icon: '✅' },
+      { id: 21, type: 'soft', name: '時間管理（詳細）', description: 'ポモドーロ、見積り、計画', tips: ['ポモドーロテクニック', 'タスク見積もり: 小/中/大', '週間計画'], exercises: ['2時間の作業セッションをポモドーロで計画する。'], icon: '⏰' },
+      { id: 22, type: 'hard', name: 'デバッグ詳細', description: 'コンソールログ、DevTools、ブレークポイント', tips: ['バグを確実に再現する', 'ブレークポイントでステップ実行する', 'スタックトレースを注意深く読む'], exercises: ['小さなバグを見つけ、ブレークポイントで解析して修正する。'], icon: '🐞' },
+      { id: 23, type: 'soft', name: 'PR 作成（詳細）', description: '良いPR説明とテスト手順', tips: ['目的、how to test、関連する issue を簡潔に'], exercises: ['テンプレートに従って PR 説明を作成する: purpose, how to test, impact'], icon: '📝' }
     ],
     middle: [
       { id: 101, type: 'soft', name: 'コードレビュー専門知識', description: 'コード品質に責任を持つ、建設的なフィードバック', tips: ['セキュリティ脆弱性を見つける', 'パフォーマンス問題', 'アーキテクチャレビュー'], icon: '🔍' },
@@ -533,7 +539,64 @@ const skillsDataMultilang = {
       { id: 14, type: 'soft', name: 'Code Review Basics', description: 'Writing constructive and effective PR comments', tips: ['Observation, impact, suggestion format', 'Check tests and lint', 'Ask clarifying questions'], exercises: ['Take an example PR and write 3 constructive comments', 'Follow a review checklist: tests, behavior, edge cases'], icon: '👀' },
       { id: 15, type: 'soft', name: 'Debugging Basics', description: 'Console, breakpoints and log analysis', tips: ['Reproduce the bug reliably', 'Use breakpoints and step through', 'Read stack traces carefully'], exercises: ['Find and fix a small bug using breakpoints', 'Use git bisect on a simple repo'], icon: '🐞' },
       { id: 16, type: 'soft', name: 'PR Writing', description: 'Good PR descriptions and adding test steps', tips: ['Short purpose, how to test, related issues', 'Reference tasks or tickets'], exercises: ['Write a PR description using template: purpose, how to test, impact'], icon: '📝' },
-      { id: 17, type: 'soft', name: 'Learning Resources', description: 'Useful books and courses', tips: ['Start with guided tutorials', 'Practice with interactive exercises', 'Join community channels'], exercises: ['Pick one resource and complete one tutorial lesson this week'], icon: '📚' }
+      { id: 17, type: 'soft', name: 'Learning Resources', description: 'Useful books and courses', tips: ['Start with guided tutorials', 'Practice with interactive exercises', 'Join community channels'], exercises: ['Pick one resource and complete one tutorial lesson this week'], icon: '📚' },
+      {
+      id: 18,
+      type: 'hard',
+      name: 'Task Management Detailed',
+      description: 'Issue tracking, subtasks, how-to-test',
+      tips: ['Create clear titles', 'Break into small subtasks', 'Assign owners and due dates'],
+      exercises: ['Create 3 subtasks for a user story and complete one updating status'],
+      resources: ['Atlassian Jira guide: https://www.atlassian.com/software/jira/guides'],
+      icon: '🗂️'
+      },
+      {
+      id: 19,
+      type: 'soft',
+      name: 'Communication & Help Culture Detailed',
+      description: 'Standups, help requests, constructive feedback',
+      tips: ['Short standup updates', 'What I tried / expected / error format when asking help', 'Focus feedback on code'],
+      exercises: ['Write a 3-line standup update: yesterday, today, blockers'],
+      resources: ['"Crucial Conversations" (book)'],
+      icon: '💬'
+      },
+      {
+      id: 20,
+      type: 'hard',
+      name: 'Testing Basics Detailed',
+      description: 'Unit test concepts, Arrange-Act-Assert, mocks',
+      tips: ['Arrange-Act-Assert', 'Test isolation', 'Mock external calls'],
+      exercises: ['Write 3 unit tests for a simple utility function.'],
+      resources: ['Jest docs: https://jestjs.io/'],
+      icon: '✅'
+      },
+      {
+      id: 21,
+      type: 'soft',
+      name: 'Time Management Detailed',
+      description: 'Pomodoro, estimation, planning',
+      tips: ['Pomodoro technique', 'Task estimation small/medium/large', 'Weekly planning'],
+      exercises: ['Plan a 2-hour work session using Pomodoro intervals.'],
+      icon: '⏰'
+      },
+      {
+      id: 22,
+      type: 'hard',
+      name: 'Debugging Detailed',
+      description: 'Console logs, DevTools, breakpoints',
+      tips: ['Reproduce bug reliably', 'Use breakpoints and step through', 'Read stack traces carefully'],
+      exercises: ['Find a small bug, use breakpoints to analyze and fix it.'],
+      icon: '🐞'
+      },
+      {
+      id: 23,
+      type: 'soft',
+      name: 'PR Writing Detailed',
+      description: 'Good PR descriptions and test steps',
+      tips: ['Short purpose, how to test, related issues'],
+      exercises: ["Write a PR description following the template: purpose, how to test, impact."],
+      icon: '📝'
+      }
     ],
     middle: [
       { id: 101, type: 'soft', name: 'Code Review Expertise', description: 'Responsible for code quality, giving constructive feedback', tips: ['Spot security vulnerabilities', 'Identify performance issues', 'Review architecture'], icon: '🔍' },
