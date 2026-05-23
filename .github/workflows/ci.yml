@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check:
+    name: Basic checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install jq
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y jq
+
+      - name: Ensure key.txt is not tracked
+        run: |
+          if git ls-files | grep -qE '(^|/)key.txt$'; then
+            echo "ERROR: key.txt is tracked in the repository. Remove it and force-push cleaned history."; exit 1;
+          else
+            echo "No key.txt in tracked files";
+          fi
+
+      - name: Validate JSON files
+        run: |
+          set -e
+          for f in $(git ls-files '*.json' || true); do
+            echo "Checking $f"
+            jq empty "$f" || (echo "Invalid JSON: $f" && exit 1)
+          done
+
+      - name: Smoke listing of dev-collab
+        run: |
+          echo "Files in dev-collab/"
+          ls -la dev-collab || true
+
+      - name: Lint quick (HTML/JS naive checks)
+        run: |
+          # ensure no obvious TODO lines
+          if grep -R "TODO" -n dev-collab || true; then echo 'NOTE: TODO found (non-fatal)'; fi
+          echo "Basic checks complete"
