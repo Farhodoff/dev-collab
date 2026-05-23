@@ -112,8 +112,8 @@ const skillComparison = {
   }
 };
 
-// Interactive Quiz Data
-const quizQuestions = {
+// Interactive Quiz Data (renamed to avoid conflict with quiz-questions.js)
+const enhancementsQuizQuestions = {
   uz: [
     {
       question: 'Code review olganingizda, biror sharoitmani tushunmagan bo\'lsangiz qanday qilasiz?',
