@@ -45,7 +45,8 @@ const translations = {
     doneText: 'Bajarildi',
     copyText: 'Nusxalash',
     copiedText: 'Nusxalandi',
-    moreText: 'Batafsil'
+    moreText: 'Batafsil',
+    quizMissing: 'Quiz ma\'lumotlari topilmadi'
   }
   
   jp: {
@@ -93,7 +94,8 @@ const translations = {
     doneText: '完了',
     copyText: 'コピー',
     copiedText: 'コピー済み',
-    moreText: '詳細'
+    moreText: '詳細',
+    quizMissing: 'クイズのデータが見つかりません'
   }
   
   en: {
@@ -141,7 +143,8 @@ const translations = {
     doneText: 'Done',
     copyText: 'Copy',
     copiedText: 'Copied',
-    moreText: 'More'
+    moreText: 'More',
+    quizMissing: 'Quiz data not found'
   }
 };
 
