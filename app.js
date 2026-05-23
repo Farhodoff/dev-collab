@@ -45,10 +45,10 @@ function updateUIText() {
     document.getElementById('comparisonTitle').textContent = translate('juniorVsMiddle');
     
     // Resources
-    document.getElementById('resourcesTitle').textContent = '📚 ' + translate('resources');
-    document.getElementById('resourcesBooks').textContent = '📖 ' + translate('books');
-    document.getElementById('resourcesCourses').textContent = '🎓 ' + translate('courses');
-    document.getElementById('resourcesTemplates').textContent = '⚙️ ' + translate('templates');
+    document.getElementById('resourcesTitle').textContent = translate('resources');
+    document.getElementById('resourcesBooks').textContent = translate('books');
+    document.getElementById('resourcesCourses').textContent = translate('courses');
+    document.getElementById('resourcesTemplates').textContent = translate('templates');
     
     // Search placeholder
     const searchEl = document.getElementById('searchInput');
