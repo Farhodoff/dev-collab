@@ -145,7 +145,7 @@ function renderSkillCard(skill) {
             </div>
 
             <div class="mt-4 flex items-center gap-2">
-                <button class="open-skill-btn mt-3 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm" data-skill-id="${skill.id}" data-level="${currentLevel}">📖 ${currentLanguage === 'uz' ? 'Batafsil' : currentLanguage === 'jp' ? '詳細' : 'More'}</button>
+                <button class="open-skill-btn mt-3 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm" data-skill-id="${skill.id}" data-level="${currentLevel}">${translate('moreText')}</button>
                 ${skill.exercises && skill.exercises.length ? `<button class="mt-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-sm px-3 py-2 rounded" data-open-exercises="${skill.id}">${currentLanguage === 'uz' ? 'Amaliyotlar' : currentLanguage === 'jp' ? '演習' : 'Exercises'}</button>` : ''}
                 <button class="mark-done-btn mt-3 ${isCompleted(skill.id) ? 'bg-green-600 text-white' : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-sm'} px-3 py-2 rounded" data-skill-id="${skill.id}">${isCompleted(skill.id) ? (currentLanguage === 'uz' ? 'Bajarildi' : currentLanguage === 'jp' ? '完了' : 'Done') : (currentLanguage === 'uz' ? 'Belgilash' : currentLanguage === 'jp' ? 'マーク' : 'Mark')}</button>
             </div>

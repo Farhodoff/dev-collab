@@ -193,7 +193,7 @@ const dailyTips = {
   uz: {
     junior: [
       '📌 Standup\'da aktivlik bilan gapirishdek - nma o\'rganish tugundim deb, nma qiyinchilik tushdim deb',
-      '📚 Har kuni bitta yangi Git command yoki test pattern o\'rganib ko\'ring',
+      'Har kuni bitta yangi Git command yoki test pattern o\'rganib ko\'ring',
       '🤝 Sharh olganingizda, sherchhiga rahmat ayt va soʻraoq - nima sebab deb o\'ylav',
       '⏰ Vaqt boshqarish - big tasks ni small sub-tasks ga bo\'ling',
       '🔍 Boshqa code review larni o\'qi - ulardan o\'rgan'
