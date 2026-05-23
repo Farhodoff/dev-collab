@@ -78,9 +78,19 @@ darkModeToggle.addEventListener('click', () => {
     localStorage.setItem('darkMode', html.classList.contains('dark'));
 });
 
-// Current filter and level states
+// Current filter, search and level states
 let currentFilter = 'all';
+let currentSearch = '';
 let currentLevel = 'junior';
+
+// Search input handling
+const searchInputEl = document.getElementById && document.getElementById('searchInput');
+if (searchInputEl) {
+    searchInputEl.addEventListener('input', (e) => {
+        currentSearch = e.target.value.trim().toLowerCase();
+        updateContent();
+    });
+}
 
 // Render skill cards
 function renderSkillCard(skill) {
@@ -111,13 +121,21 @@ function renderSkillCard(skill) {
 
 // Filter skills based on type and level
 function getFilteredSkills(level) {
-    const levelData = skillsDataMultilang[currentLanguage]?.[level] || skillsDataMultilang['uz'][level];
+    const levelData = skillsDataMultilang[currentLanguage]?.[level] || skillsDataMultilang['uz'][level] || [];
     
-    if (currentFilter === 'all') {
-        return levelData;
+    let results = levelData;
+    if (currentFilter !== 'all') {
+        results = results.filter(skill => skill.type === currentFilter);
+    }
+
+    if (currentSearch && currentSearch.length > 0) {
+        results = results.filter(skill => {
+            const haystack = [skill.name, skill.description, ...(skill.tips||[])].join(' ').toLowerCase();
+            return haystack.indexOf(currentSearch) !== -1;
+        });
     }
     
-    return levelData.filter(skill => skill.type === currentFilter);
+    return results;
 }
 
 // Render grid

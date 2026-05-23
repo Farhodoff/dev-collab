@@ -1,0 +1,17 @@
+{
+  "skills": [
+    {
+      "level": "junior",
+      "id": 4,
+      "type": "hard",
+      "name": "Git Asoslari",
+      "description": "Branch, commit, push, pull, PR",
+      "tips": ["Write meaningful commits", "Use feature branches"],
+      "details": ["Overview", "Key commands", "Exercises"]
+    }
+  ],
+  "meta": {
+    "version": "1.0",
+    "generated_at": "2026-05-24T00:28:00Z"
+  }
+}
