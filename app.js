@@ -94,12 +94,14 @@ if (searchInputEl) {
 
 // Render skill cards
 function renderSkillCard(skill) {
+    const exercisesBadge = skill.exercises && skill.exercises.length ? `<span class="ml-2 inline-block text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">${skill.exercises.length} ${currentLanguage === 'uz' ? 'Amaliy' : currentLanguage === 'jp' ? '演習' : 'Ex'}</span>` : '';
+
     return `
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105 p-6 border-l-4 ${skill.type === 'soft' ? 'border-l-blue-600' : 'border-l-purple-600'}">
             <div class="flex justify-between items-start mb-3">
                 <span class="text-3xl">${skill.icon}</span>
                 <span class="text-xs font-bold px-2 py-1 rounded ${skill.type === 'soft' ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'}">
-                    ${skill.type === 'soft' ? 'SOFT' : 'HARD'}
+                    ${skill.type === 'soft' ? 'SOFT' : 'HARD'}${exercisesBadge}
                 </span>
             </div>
             <h3 class="text-xl font-bold mb-2">${skill.name}</h3>
@@ -112,8 +114,9 @@ function renderSkillCard(skill) {
                 </ul>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 flex items-center gap-2">
                 <button class="open-skill-btn mt-3 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm" data-skill-id="${skill.id}" data-level="${currentLevel}">📖 ${currentLanguage === 'uz' ? 'Batafsil' : currentLanguage === 'jp' ? '詳細' : 'More'}</button>
+                ${skill.exercises && skill.exercises.length ? `<button class="mt-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-sm px-3 py-2 rounded" data-open-exercises="${skill.id}">${currentLanguage === 'uz' ? 'Amaliyotlar' : currentLanguage === 'jp' ? '演習' : 'Exercises'}</button>` : ''}
             </div>
         </div>
     `;
@@ -202,6 +205,42 @@ function openSkillModal(skillId, level) {
             ulEx.appendChild(li);
         });
         body.appendChild(ulEx);
+    }
+
+    // Key commands parsing and rendering (if details contains 'Key commands')
+    if (skill.details && skill.details.length) {
+        const keyLine = skill.details.find(d => /key commands:?/i.test(d));
+        if (keyLine) {
+            const match = keyLine.match(/key commands:?\s*(.*)/i);
+            if (match && match[1]) {
+                const cmds = match[1].split(',').map(c => c.trim()).filter(Boolean);
+                if (cmds.length) {
+                    const cmdsH = document.createElement('h4');
+                    cmdsH.className = 'font-bold mt-4';
+                    cmdsH.textContent = currentLanguage === 'uz' ? 'Buyruqlar' : currentLanguage === 'jp' ? 'コマンド' : 'Commands';
+                    body.appendChild(cmdsH);
+
+                    const cmdsDiv = document.createElement('div');
+                    cmdsDiv.className = 'mt-2 flex flex-wrap gap-2';
+                    cmds.forEach(cmd => {
+                        const b = document.createElement('button');
+                        b.className = 'bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs border';
+                        b.textContent = cmd;
+                        b.onclick = () => {
+                            if (navigator.clipboard && navigator.clipboard.writeText) {
+                                navigator.clipboard.writeText(cmd).then(() => {
+                                    const prev = b.textContent;
+                                    b.textContent = currentLanguage === 'uz' ? 'Nusxalandi' : currentLanguage === 'jp' ? 'コピー済み' : 'Copied';
+                                    setTimeout(() => { b.textContent = prev; }, 1500);
+                                });
+                            }
+                        };
+                        cmdsDiv.appendChild(b);
+                    });
+                    body.appendChild(cmdsDiv);
+                }
+            }
+        }
     }
 
     // Copy button - copies key sections (name, description, details, tips, exercises)
