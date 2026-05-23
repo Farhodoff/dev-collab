@@ -83,6 +83,28 @@ let currentFilter = 'all';
 let currentSearch = '';
 let currentLevel = 'junior';
 
+// Progress tracking (completed skills) stored in localStorage
+const COMPLETED_KEY = 'completed_skills_v1';
+function loadCompletedSkills() {
+    try {
+        const raw = localStorage.getItem(COMPLETED_KEY);
+        return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+}
+function saveCompletedSkills(arr) {
+    try { localStorage.setItem(COMPLETED_KEY, JSON.stringify(Array.from(new Set(arr)))); } catch (e) {}
+}
+function isCompleted(skillId) {
+    return loadCompletedSkills().includes(skillId);
+}
+function toggleCompleted(skillId) {
+    const list = loadCompletedSkills();
+    const idx = list.indexOf(skillId);
+    if (idx === -1) list.push(skillId); else list.splice(idx,1);
+    saveCompletedSkills(list);
+    updateContent();
+}
+
 // Search input handling
 const searchInputEl = document.getElementById && document.getElementById('searchInput');
 if (searchInputEl) {
@@ -117,6 +139,7 @@ function renderSkillCard(skill) {
             <div class="mt-4 flex items-center gap-2">
                 <button class="open-skill-btn mt-3 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm" data-skill-id="${skill.id}" data-level="${currentLevel}">📖 ${currentLanguage === 'uz' ? 'Batafsil' : currentLanguage === 'jp' ? '詳細' : 'More'}</button>
                 ${skill.exercises && skill.exercises.length ? `<button class="mt-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-sm px-3 py-2 rounded" data-open-exercises="${skill.id}">${currentLanguage === 'uz' ? 'Amaliyotlar' : currentLanguage === 'jp' ? '演習' : 'Exercises'}</button>` : ''}
+                <button class="mark-done-btn mt-3 ${isCompleted(skill.id) ? 'bg-green-600 text-white' : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-sm'} px-3 py-2 rounded" data-skill-id="${skill.id}">${isCompleted(skill.id) ? (currentLanguage === 'uz' ? 'Bajarildi' : currentLanguage === 'jp' ? '完了' : 'Done') : (currentLanguage === 'uz' ? 'Belgilash' : currentLanguage === 'jp' ? 'マーク' : 'Mark')}</button>
             </div>
         </div>
     `;
@@ -156,7 +179,38 @@ function renderGrid(level) {
             openSkillModal(skillId, level);
         });
     });
+
+    // attach exercises buttons (open modal for that skill)
+    grid.querySelectorAll('[data-open-exercises]').forEach(b => {
+        b.addEventListener('click', () => {
+            const id = parseInt(b.getAttribute('data-open-exercises'), 10);
+            openSkillModal(id, currentLevel);
+            // scroll to exercises (modal will show them)
+        });
+    });
+
+    // attach mark-done buttons (toggle completed)
+    grid.querySelectorAll('.mark-done-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.dataset.skillId, 10);
+            toggleCompleted(id);
+        });
+    });
+
+    // Update visual state based on completed
+    grid.querySelectorAll('[data-skill-id]').forEach(el => {
+        const id = parseInt(el.getAttribute('data-skill-id'), 10);
+        // find nearest card container
+        const card = el.closest('.rounded-lg');
+        if (!card) return;
+        if (isCompleted(id)) {
+            card.classList.add('opacity-60', 'ring-2', 'ring-green-300');
+        } else {
+            card.classList.remove('opacity-60', 'ring-2', 'ring-green-300');
+        }
+    });
 }
+
 
 function openSkillModal(skillId, level) {
     const levelData = skillsDataMultilang[currentLanguage]?.[level] || skillsDataMultilang['uz'][level] || [];
