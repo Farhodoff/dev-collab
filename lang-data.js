@@ -47,7 +47,7 @@ const translations = {
     copiedText: 'Nusxalandi',
     moreText: 'Batafsil',
     quizMissing: 'Quiz ma\'lumotlari topilmadi'
-  }
+  },
   
   jp: {
     // Navbar
