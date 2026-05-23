@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevCollab - Jamoaviy Ishlash Ko'nikmalari</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">DevCollab</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                    <span class="dark:hidden">🌙</span>
+                    <span class="hidden dark:inline">☀️</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-4">Jamoaviy Ishlash Ko'nikmalari</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                Junior, Middle, va Senior darajadagi dasturchilar uchun soft va hard skilllarni o'rganish va taqqoslash
+            </p>
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-6">
+                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition" data-filter="all">
+                    Barchasi
+                </button>
+                <button class="filter-btn bg-gray-300 dark:bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition" data-filter="soft">
+                    Soft Skills
+                </button>
+                <button class="filter-btn bg-gray-300 dark:bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition" data-filter="hard">
+                    Hard Skills
+                </button>
+            </div>
+
+            <!-- Level Tabs -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="level-tab bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold" data-level="junior">
+                    Junior
+                </button>
+                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="middle">
+                    Middle
+                </button>
+                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="senior">
+                    Senior
+                </button>
+                <button class="level-tab bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg font-semibold hover:border-purple-600" data-level="comparison">
+                    Qiyoslash
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <!-- Junior Level -->
+        <section id="junior-section" class="level-content mb-16">
+            <h2 class="text-3xl font-bold mb-8 flex items-center">
+                <span class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center mr-4 font-bold">Jr</span>
+                Junior Dasturchi
+            </h2>
+            
+            <div id="junior-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- Middle Level -->
+        <section id="middle-section" class="level-content hidden mb-16">
+            <h2 class="text-3xl font-bold mb-8 flex items-center">
+                <span class="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center mr-4 font-bold">Md</span>
+                Middle Dasturchi
+            </h2>
+            
+            <div id="middle-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- Senior Level -->
+        <section id="senior-section" class="level-content hidden mb-16">
+            <h2 class="text-3xl font-bold mb-8 flex items-center">
+                <span class="w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center mr-4 font-bold">Sr</span>
+                Senior Dasturchi
+            </h2>
+            
+            <div id="senior-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- Comparison -->
+        <section id="comparison-section" class="level-content hidden mb-16">
+            <h2 class="text-3xl font-bold mb-8">Junior vs Middle Qiyoslash</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div id="comparison-junior" class="space-y-4"></div>
+                <div id="comparison-middle" class="space-y-4"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Resources Section -->
+    <section class="bg-gray-100 dark:bg-gray-800 py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-10 text-center">📚 O'rganish Resurslar</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-3">📖 Kitoblar</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>• The Clean Coder</li>
+                        <li>• The Pragmatic Programmer</li>
+                        <li>• Clean Code</li>
+                        <li>• Design Patterns</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-3">🎓 Kurslar</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>• LinkedIn Learning</li>
+                        <li>• Udemy</li>
+                        <li>• Coursera</li>
+                        <li>• YouTube Channels</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-3">⚙️ Shablonlar</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>• <a href="#" class="text-blue-600 hover:underline">PR Template</a></li>
+                        <li>• <a href="#" class="text-blue-600 hover:underline">DoD Checklist</a></li>
+                        <li>• <a href="#" class="text-blue-600 hover:underline">Issue Template</a></li>
+                        <li>• <a href="#" class="text-blue-600 hover:underline">Code Review Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>DevCollab © 2026 | Dasturchilar uchun Jamoaviy Ishlash Platform</p>
+            <p class="mt-2 text-sm text-gray-400">
+                <a href="https://github.com" class="hover:text-white transition">GitHub</a> •
+                <a href="#" class="hover:text-white transition">Fikr Bildiring</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="skills-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
