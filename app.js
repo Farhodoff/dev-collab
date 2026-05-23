@@ -50,6 +50,10 @@ function updateUIText() {
     document.getElementById('resourcesCourses').textContent = '🎓 ' + translate('courses');
     document.getElementById('resourcesTemplates').textContent = '⚙️ ' + translate('templates');
     
+    // Search placeholder
+    const searchEl = document.getElementById('searchInput');
+    if (searchEl) searchEl.setAttribute('placeholder', translate('searchPlaceholder'));
+
     // Footer
     document.getElementById('footerText').textContent = translate('footerText');
     document.getElementById('feedbackLink').textContent = translate('feedback');
@@ -116,14 +120,14 @@ if (searchInputEl) {
 
 // Render skill cards
 function renderSkillCard(skill) {
-    const exercisesBadge = skill.exercises && skill.exercises.length ? `<span class="ml-2 inline-block text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">${skill.exercises.length} ${currentLanguage === 'uz' ? 'Amaliy' : currentLanguage === 'jp' ? '演習' : 'Ex'}</span>` : '';
+    const exercisesBadge = skill.exercises && skill.exercises.length ? `<span class="ml-2 inline-block text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">${skill.exercises.length} ${translate('exercisesLabel')}</span>` : '';
 
     return `
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105 p-6 border-l-4 ${skill.type === 'soft' ? 'border-l-blue-600' : 'border-l-purple-600'}">
             <div class="flex justify-between items-start mb-3">
                 <span class="text-3xl">${skill.icon}</span>
                 <span class="text-xs font-bold px-2 py-1 rounded ${skill.type === 'soft' ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'}">
-                    ${skill.type === 'soft' ? 'SOFT' : 'HARD'}${exercisesBadge}
+                ${skill.type === 'soft' ? translate('softLabel') : translate('hardLabel')}${exercisesBadge}
                 </span>
             </div>
             <h3 class="text-xl font-bold mb-2">${skill.name}</h3>
@@ -483,7 +487,7 @@ function initQuiz() {
     // Add submit button
     const submitBtn = document.createElement('button');
     submitBtn.className = 'mt-8 bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition w-full';
-    submitBtn.textContent = 'Natijani Ko\'rish';
+    submitBtn.textContent = translate('quizSubmit');
     submitBtn.addEventListener('click', calculateQuizResult);
     quizContainer.appendChild(submitBtn);
     

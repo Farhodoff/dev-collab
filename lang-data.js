@@ -33,8 +33,20 @@ const translations = {
     
     // Footer
     footerText: 'DevCollab © 2026 | Dasturchilar uchun Jamoaviy Ishlash Platform',
-    feedback: 'Fikr Bildiring'
-  },
+    feedback: 'Fikr Bildiring',
+
+    // UI strings
+    searchPlaceholder: 'Qidirish: Git, Test...',
+    quizSubmit: 'Natijani Ko\'rish',
+    softLabel: 'SOFT',
+    hardLabel: 'HARD',
+    exercisesLabel: 'Amaliy',
+    markText: 'Belgilash',
+    doneText: 'Bajarildi',
+    copyText: 'Nusxalash',
+    copiedText: 'Nusxalandi',
+    moreText: 'Batafsil'
+  }
   
   jp: {
     // Navbar
@@ -69,8 +81,20 @@ const translations = {
     
     // Footer
     footerText: 'DevCollab © 2026 | チーム開発スキルプラットフォーム',
-    feedback: 'フィードバック'
-  },
+    feedback: 'フィードバック',
+
+    // UI strings
+    searchPlaceholder: '検索: Git, テスト...',
+    quizSubmit: '結果を見る',
+    softLabel: 'ソフト',
+    hardLabel: 'ハード',
+    exercisesLabel: '演習',
+    markText: 'マーク',
+    doneText: '完了',
+    copyText: 'コピー',
+    copiedText: 'コピー済み',
+    moreText: '詳細'
+  }
   
   en: {
     // Navbar
@@ -105,7 +129,19 @@ const translations = {
     
     // Footer
     footerText: 'DevCollab © 2026 | Teamwork Skills Platform for Developers',
-    feedback: 'Give Feedback'
+    feedback: 'Give Feedback',
+
+    // UI strings
+    searchPlaceholder: 'Search: Git, Test...',
+    quizSubmit: 'See Result',
+    softLabel: 'SOFT',
+    hardLabel: 'HARD',
+    exercisesLabel: 'Exercises',
+    markText: 'Mark',
+    doneText: 'Done',
+    copyText: 'Copy',
+    copiedText: 'Copied',
+    moreText: 'More'
   }
 };
 
