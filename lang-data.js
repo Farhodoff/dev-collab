@@ -96,7 +96,7 @@ const translations = {
     copiedText: 'コピー済み',
     moreText: '詳細',
     quizMissing: 'クイズのデータが見つかりません'
-  }
+  },
   
   en: {
     // Navbar
